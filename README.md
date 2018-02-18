@@ -1,0 +1,2 @@
+# ServerListForNukkit
+ServerList通称鯖リスのNukkit版です
