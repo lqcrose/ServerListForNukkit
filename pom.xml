@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.lacrose</groupId>
+  <artifactId>ServerListForNukkit</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <repositories>
+    <repository>
+      <id>potestas-repo</id>
+      <url>http://repo.potestas.xyz/</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>cn.nukkit</groupId>
+      <artifactId>nukkit</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ning</groupId>
+      <artifactId>async-http-client</artifactId>
+      <version>1.9.40</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+  <finalName>${project.artifactId}-${project.version}</finalName>
+  <defaultGoal>clean install</defaultGoal>
+    <plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jar-plugin</artifactId>
+           <version>3.0.2</version>
+           <configuration>
+               <archive>
+                   <addMavenDescriptor>false</addMavenDescriptor>
+               </archive>
+           </configuration>
+       </plugin>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>3.7.0</version>
+           <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+           </configuration>
+       </plugin>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-shade-plugin</artifactId>
+           <version>3.1.0</version>
+           <executions>
+             <execution>
+               <phase>package</phase>
+               <goals>
+                 <goal>shade</goal>
+               </goals>
+             </execution>
+           </executions>
+           <configuration>
+             <transformers>
+               <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                 <mainClass>net.lacrose.ServerListForNukkit</mainClass>
+               </transformer>
+             </transformers>
+             <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+           </configuration>
+       </plugin>
+    </plugins>
+  </build>
+</project>

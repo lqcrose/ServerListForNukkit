@@ -1,0 +1,24 @@
+name: ServerListForNukkit
+main: net.lacrose.ServerListForNukkit
+version: alpha
+author: lacrose
+authors: ["PM-MP ServerList JPN", "Nexus", "lacrose"]
+api: ["1.0.0"]
+commands:
+ event:
+  description: "Change server state"
+  usage: "/event <on|off>"
+  permission: serverlist.command.event
+
+permissions:
+ serverlist:
+  default: op
+  description: ""
+  children:
+   serverlist.command:
+    description: ""
+    default: op
+    children:
+     serverlist.command.event:
+      description: ""
+      default: op
